@@ -5,8 +5,7 @@ MainWindow::MainWindow()
     ui = new Ui::MainWindow;
     ui->setupUi(this);
 
-    codec = QTextCodec::codecForName("Windows-1251");
-    setWindowTitle(codec->toUnicode("Обработка событий – вращающиеся фигуры"));
+    setWindowTitle("Figures");
 
     area = new Area(ui->areaPlaceholder);
     QVBoxLayout *layout = new QVBoxLayout(ui->areaPlaceholder);

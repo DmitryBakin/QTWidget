@@ -12,7 +12,6 @@ class MainWindow : public QMainWindow
 
 private:
     Ui::MainWindow *ui;
-    QTextCodec *codec;
     Area *area;
 
 public:
