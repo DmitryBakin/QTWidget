@@ -5,12 +5,11 @@ MainWindow::MainWindow()
     ui = new Ui::MainWindow;
     ui->setupUi(this);
 
-    setWindowTitle("Figures");
+    setWindowTitle("Фигуры");
 
     area = new Area(ui->areaPlaceholder);
     QVBoxLayout *layout = new QVBoxLayout(ui->areaPlaceholder);
     layout->addWidget(area);
-    layout->setContentsMargins(0, 0, 0, 0);
 
     connect(ui->exitButton, &QPushButton::clicked, this, &MainWindow::close);
 }

@@ -13,12 +13,12 @@ Area::Area(QWidget *parent) : QWidget(parent)
     alpha = 0;
 }
 
-void Area::showEvent(QShowEvent *)
+void Area::showEvent(QShowEvent *event)
 {
     myTimer = startTimer(50);
 }
 
-void Area::hideEvent(QHideEvent *)
+void Area::hideEvent(QHideEvent *event)
 {
     killTimer(myTimer);
 }
@@ -39,13 +39,12 @@ void Area::timerEvent(QTimerEvent *event)
 void Area::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
-    painter.setRenderHint(QPainter::Antialiasing);
 
     painter.setPen(QPen(Qt::red, 2));
     myline->move(alpha, &painter);
 
     painter.setPen(QPen(Qt::blue, 2));
-    myrect->move(-0.5f * alpha, &painter);
+    myrect->move(alpha, &painter);
 }
 
 Area::~Area()
