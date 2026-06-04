@@ -1,21 +1,13 @@
 #include "mainwindow.h"
 
-MainWindow::MainWindow()
+MainWindow::MainWindow(QWidget* parent) : QWidget(parent)
 {
-    ui = new Ui::MainWindow;
-    ui->setupUi(this);
-
     setWindowTitle("Фигуры");
 
-    area = new Area(ui->areaPlaceholder);
-    QVBoxLayout *layout = new QVBoxLayout(ui->areaPlaceholder);
+    area = new Area( this );
+    exitButton = new QPushButton("Завершить",this );
+    QVBoxLayout *layout = new QVBoxLayout(this);
     layout->addWidget(area);
-
-    connect(ui->exitButton, &QPushButton::clicked, this, &MainWindow::close);
-}
-
-MainWindow::~MainWindow()
-{
-    delete area;
-    delete ui;
+    layout->addWidget(exitButton);
+    connect(exitButton, &QPushButton::clicked, this, &MainWindow::close);
 }

@@ -44,7 +44,7 @@ void Area::paintEvent(QPaintEvent *)
     myline->move(alpha, &painter);
 
     painter.setPen(QPen(Qt::blue, 2));
-    myrect->move(alpha, &painter);
+    myrect->move((-0.5) * alpha, &painter);
 }
 
 Area::~Area()

@@ -3,7 +3,6 @@
 
 #include <QtWidgets>
 
-// Абстрактный класс Figura
 class Figura
 {
 protected:

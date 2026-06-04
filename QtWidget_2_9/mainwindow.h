@@ -4,19 +4,19 @@
 #include <QMainWindow>
 #include <QtWidgets>
 #include "area.h"
-#include "ui_mainwindow.h"
 
-class MainWindow : public QMainWindow
+
+class MainWindow : public QWidget
 {
     Q_OBJECT
 
-private:
-    Ui::MainWindow *ui;
-    Area *area;
+protected:
+    Area * area;
+    QPushButton * exitButton;
+
 
 public:
-    MainWindow();
-    ~MainWindow();
+    MainWindow(QWidget *parent = nullptr);
 };
 
 #endif // MAINWINDOW_H
