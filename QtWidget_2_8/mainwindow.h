@@ -16,7 +16,6 @@ public:
         : QLineEdit(contents, parent)
     {
         setReadOnly(true);
-        setAlignment(Qt::AlignCenter);
     }
 
 signals:
@@ -43,7 +42,6 @@ class MainWindow : public QMainWindow
 
 private:
     Ui::MainWindow *ui;
-    QTextCodec *codec;
     Counter *edit1;
     Counter *edit2;
 

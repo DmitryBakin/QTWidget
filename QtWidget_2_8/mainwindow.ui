@@ -12,7 +12,6 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
-    <!-- Верхняя строка: заголовки -->
     <item>
      <widget class="QWidget" name="widgetHeaders" native="true">
       <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -41,7 +40,7 @@
     </item>
     <item>
      <widget class="QWidget" name="widgetCounters" native="true">
-      <layout class="QVBoxLayout" name="countersLayout"/> 
+      <layout class="QVBoxLayout" name="countersLayout"/>
      </widget>
     </item>
     <item>
