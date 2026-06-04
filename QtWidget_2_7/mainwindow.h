@@ -5,13 +5,12 @@
 #include <QtWidgets>
 #include <QtCore>
 
-#include "ui_mainwindow.h"
-
 
 
 class StrValidator : public QValidator
 {
     Q_OBJECT
+
 public:
     StrValidator(QObject *parent = nullptr) : QValidator(parent) {}
     virtual State validate(QString &str, int &pos) const override
@@ -20,12 +19,18 @@ public:
     }
 };
 
-class MainWindow : public QMainWindow
+class MainWindow : public QWidget
 {
     Q_OBJECT
-
+protected:
+    QFrame *frame;
+    QLabel *inputLabel;
+    QLineEdit *inputEdit;
+    QLabel *outputLabel;
+    QLineEdit *outputEdit;
+    QPushButton *nextButton;
+    QPushButton *exitButton;
 private:
-    Ui::MainWindow *ui;
 
 public:
     MainWindow(QWidget *parent = nullptr);

@@ -1,58 +1,83 @@
 #include "mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
+MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
 {
-    ui = new Ui::MainWindow;
-    ui->setupUi(this);
+    setWindowTitle("Возведение числа в квадрат");
 
-    setWindowTitle("Squaring");
+    frame = new QFrame(this);
+    frame->setFrameShadow(QFrame::Raised);
+    frame->setFrameShape(QFrame::Panel);
 
-    StrValidator *v = new StrValidator(ui->inputEdit);
-    ui->inputEdit->setValidator(v);
+    inputLabel = new QLabel("Введите число:", this);
+    inputEdit = new QLineEdit("", this);
+
+    StrValidator *v = new StrValidator(inputEdit);
+    inputEdit->setValidator(v);
+
+    outputLabel = new QLabel("Результат:", this);
+    outputEdit = new QLineEdit("", this);
+    nextButton = new QPushButton("Следующее", this);
+    exitButton = new QPushButton("Выход", this);
+
+    QVBoxLayout *vLayout1 = new QVBoxLayout(frame);
+    vLayout1->addWidget(inputLabel);
+    vLayout1->addWidget(inputEdit);
+    vLayout1->addWidget(outputLabel);
+    vLayout1->addWidget(outputEdit);
+    vLayout1->addStretch();
+
+    QVBoxLayout *vLayout2 = new QVBoxLayout();
+    vLayout2->addWidget(nextButton);
+    vLayout2->addWidget(exitButton);
+    vLayout2->addStretch();
+
+    QHBoxLayout *hLayout = new QHBoxLayout(this);
+    hLayout->addWidget(frame);
+    hLayout->addLayout(vLayout2);
 
     begin();
 
-    connect(ui->exitButton, &QPushButton::clicked, this, &MainWindow::close);
-    connect(ui->nextButton, &QPushButton::clicked, this, &MainWindow::begin);
-    connect(ui->inputEdit, &QLineEdit::returnPressed, this, &MainWindow::calc);
+    connect(exitButton, &QPushButton::clicked, this, &MainWindow::close);
+    connect(nextButton, &QPushButton::clicked, this, &MainWindow::begin);
+    connect(inputEdit, &QLineEdit::returnPressed, this, &MainWindow::calc);
 }
 
 void MainWindow::begin()
 {
-    ui->inputEdit->clear();
-    ui->nextButton->setEnabled(false);
-    ui->nextButton->setDefault(false);
-    ui->inputEdit->setEnabled(true);
-    ui->outputLabel->setVisible(false);
-    ui->outputEdit->setVisible(false);
-    ui->outputEdit->setEnabled(false);
-    ui->inputEdit->setFocus();
+    inputEdit->clear();
+    nextButton->setEnabled(false);
+    nextButton->setDefault(false);
+    inputEdit->setEnabled(true);
+    outputLabel->setVisible(false);
+    outputEdit->setVisible(false);
+    outputEdit->setEnabled(false);
+    inputEdit->setFocus();
 }
 
 void MainWindow::calc()
 {
     bool Ok = true;
     float r, a;
-    QString str = ui->inputEdit->text();
+    QString str = inputEdit->text();
     a = str.toDouble(&Ok);
 
     if (Ok)
     {
         r = a * a;
         str.setNum(r);
-        ui->outputEdit->setText(str);
-        ui->inputEdit->setEnabled(false);
-        ui->outputLabel->setVisible(true);
-        ui->outputEdit->setVisible(true);
-        ui->nextButton->setDefault(true);
-        ui->nextButton->setEnabled(true);
-        ui->nextButton->setFocus();
+        outputEdit->setText(str);
+        inputEdit->setEnabled(false);
+        outputLabel->setVisible(true);
+        outputEdit->setVisible(true);
+        nextButton->setDefault(true);
+        nextButton->setEnabled(true);
+        nextButton->setFocus();
     }
     else if (!str.isEmpty())
     {
         QMessageBox msgBox(QMessageBox::Information,
-                           "Squaring",
-                           "Invalid value entered.",
+                           "Возведение числа в квадрат",
+                           "Введено неверное значение.",
                            QMessageBox::Ok);
         msgBox.exec();
     }
@@ -60,5 +85,4 @@ void MainWindow::calc()
 
 MainWindow::~MainWindow()
 {
-    delete ui;
 }
