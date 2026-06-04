@@ -5,8 +5,6 @@
 #include <QtWidgets>
 #include <QtCore>
 
-#include "ui_mainwindow.h"
-
 class Counter : public QLineEdit
 {
     Q_OBJECT
@@ -36,14 +34,14 @@ public slots:
     }
 };
 
-class MainWindow : public QMainWindow
+class MainWindow : public QWidget
 {
     Q_OBJECT
-
-private:
-    Ui::MainWindow *ui;
-    Counter *edit1;
-    Counter *edit2;
+protected:
+    QLabel *label1,*label2;
+    Counter *edit1,*edit2;
+    QPushButton *calcbutton;
+    QPushButton *exitbutton;
 
 public:
     MainWindow(QWidget *parent = nullptr);
