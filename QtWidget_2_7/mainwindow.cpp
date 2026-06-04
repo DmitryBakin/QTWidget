@@ -5,7 +5,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     ui = new Ui::MainWindow;
     ui->setupUi(this);
 
-    codec = QTextCodec::codecForName("Windows-1251");
     setWindowTitle("Squaring");
 
     StrValidator *v = new StrValidator(ui->inputEdit);
